@@ -2,7 +2,6 @@
   position: fixed;
   display: flex;
   justify-content: space-between;
-
   width: 100%;
   height: 20px;
   padding: 20px;
@@ -39,35 +38,34 @@
 }
 
 .btn {
-  border: none;
   width: 60px;
-  box-shadow: 2px 3px tomato;
   padding: 0.2rem;
   border-radius: 5px;
-  /* background-color: red; */
   background-color: transparent;
+  border: 1px solid #f3f3f3;
   color: #fff;
 }
 
 .btn1 {
-  border: none;
+  border: 1px solid green;
   width: 60px;
   padding: 0.2rem;
   border-radius: 5px;
   background-color: transparent;
-  box-shadow: 2px 3px #999;
-  color: #fff;
+  color: green;
 }
 
 .btn:hover {
   cursor: pointer;
   background: tomato;
-  color: #000;
-  transition: all 0.2s;
+  color: #fff;
 }
 .btn1:hover {
   cursor: pointer;
-  color: #000;
-  background-color: #fff;
-  transition: all 0.2s;
+  color: #fff;
+  background-color: green;
+}
+
+.avatar_div{
+float: right;
 }
