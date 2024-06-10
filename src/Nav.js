@@ -1,6 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
+import { SignedIn, SignedOut, UserButton, useClerk } from '@clerk/clerk-react';
+
+function SignUpButton() {
+  const clerk = useClerk();
+
+  return (
+    <button className="sign-up-btn" onClick={() => clerk.openSignUp({})}>
+      Sign up
+    </button>
+  );
+}
+
+function SignInButton() {
+  const clerk = useClerk();
+
+  return (
+    <button className="sign-in-btn" onClick={() => clerk.openSignIn({})}>
+      Sign in
+    </button>
+  );
+}
 
 export default function Nav() {
   const [show, setShow] = useState(false);
@@ -15,40 +34,29 @@ export default function Nav() {
     });
   }, []);
 
-  const sign = (e) => {
-    e.preventDefault();
-    alert('Not yet implemented!');
-  };
-
-  const out = (e) => {
-    e.preventDefault();
-    alert('Not yet implemented!');
-  };
-
   return (
     <div className={`nav ${show && 'nav_black'}`}>
-      <nav>
-        <h2
-          className="nav_logo"
-          style={{ color: 'red', fontFamily: 'sans-serif' }}
-        >
-          NETFLIX
-        </h2>
+      <div className="nav_wrapper">
+        <h2 className="nav_logo">NETFLIX</h2>
 
-        <div className="navig">
-          <button onClick={sign} className="btn1">
-            sign in
-          </button>
-          <button onClick={out} className="btn">
-            sign up
-          </button>
-        </div>
-        <div className="avatar_div">
-          <Stack direction="row" spacing={2}>
-            <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-          </Stack>
-        </div>
-      </nav>
+        <nav className="nav_bar">
+          <SignedOut>
+            <ul>
+              <li>
+                <SignUpButton />
+              </li>
+
+              <li>
+                <SignInButton />
+              </li>
+            </ul>
+          </SignedOut>
+
+          <SignedIn>
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
+        </nav>
+      </div>
     </div>
   );
 }
